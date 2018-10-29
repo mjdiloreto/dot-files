@@ -28,8 +28,8 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 
 " General settings
 set relativenumber	" better than set number
-set tabstop=4
-set shiftwidth=4  " number of spaces to use for autoindenting
+set tabstop=2
+set shiftwidth=2  " number of spaces to use for autoindenting
 set hidden		" hide buffers instead of closing when opening new files
 set hlsearch      " highlight search terms
 set incsearch     " show search matches as you type
@@ -44,6 +44,8 @@ set undolevels=1000      " use many muchos levels of undo
 set nobackup			 " vim shouldn't be responsible for data loss 
 set noswapfile
 set pastetoggle=<F2>	" f2 to enter paste mode, no cascading autoindent
+set autochdir 		" Set the working directory to wherever the open file lives
+:set autoread			" Automatically update changed files, instead of needing to use :edit
 
 " Mappings
 " CTRL-N to open file tree
