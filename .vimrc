@@ -55,7 +55,8 @@ set nobackup			 " vim shouldn't be responsible for data loss
 set noswapfile
 set pastetoggle=<F2>	" f2 to enter paste mode, no cascading autoindent
 set autochdir 		" Set the working directory to wherever the open file lives
-:set autoread			" Automatically update changed files, instead of needing to use :edit
+set autoread			" Automatically update changed files, instead of needing to use :edit
+set tags=tags;	  " look for tags in current dir, then recursively to root
 
 " Mappings
 " change the mapleader from \ to ,
