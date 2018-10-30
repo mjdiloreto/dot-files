@@ -11,6 +11,7 @@ Plugin 'scrooloose/nerdtree'		" file system viewer
 Plugin 'pangloss/vim-javascript'	" syntax highlighting for js
 Plugin 'mxw/vim-jsx'				" syntax highlighting for jsx
 Plugin 'w0rp/ale'					" async linting
+Plugin 'ctrlpvim/ctrlp.vim' " ctrl-p to file search
 
 
 " All of your Plugins must be added before the following line
@@ -24,9 +25,18 @@ autocmd vimenter * NERDTree 	" open tree on startup
 " close if last window
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
-
+" CtrlP settings
+" Ignore some folders and files for CtrlP indexing
+let g:ctrlp_custom_ignore = {
+   \ 'dir':  '\.git$\|\.yardoc\|node_modules\|log\|tmp$',
+   \ 'file': '\.so$\|\.dat$|\.DS_Store$'
+\ }
+let g:ctrlp_working_path_mode = 'ra'		" search from (r)oot and in cur dir when not (a)ncestor
+let g:ctrlp_root_markers = ['.ctrlp']		" touch .ctrlp in root of project to set ctrlp search path
+let g:ctrlp_extensions = ['tag']				" enable finding ctags
 
 " General settings
+colorscheme slate
 set relativenumber	" better than set number
 set tabstop=2
 set shiftwidth=2  " number of spaces to use for autoindenting
@@ -48,8 +58,12 @@ set autochdir 		" Set the working directory to wherever the open file lives
 :set autoread			" Automatically update changed files, instead of needing to use :edit
 
 " Mappings
+" change the mapleader from \ to ,
+let mapleader=","
 " CTRL-N to open file tree
 map <C-n> :NERDTreeToggle<CR>
 " If lines are wrapped, don't jump to next line number
 nnoremap <up> g<up>
 nnoremap <down> g<down>
+" Quickly search through tagged occurrences of items
+nnoremap <leader>. :CtrlPTag<cr>
