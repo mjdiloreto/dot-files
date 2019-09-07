@@ -21,7 +21,7 @@ filetype plugin indent on    " required
 
 
 " NERDTree settings
-autocmd vimenter * NERDTree 	" open tree on startup
+" autocmd vimenter * NERDTree 	" open tree on startup
 " close if last window
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
@@ -38,6 +38,7 @@ let g:ctrlp_extensions = ['tag']				" enable finding ctags
 " General settings
 colorscheme slate
 set relativenumber	" better than set number
+set number	" show current line number 
 set tabstop=2
 set shiftwidth=2  " number of spaces to use for autoindenting
 set hidden		" hide buffers instead of closing when opening new files
