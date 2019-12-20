@@ -1,0 +1,13 @@
+[user]
+	email = mjdiloreto@gmail.com
+	name = mjdiloreto
+[color]
+	ui = true
+[alias]
+	lol = log --graph --decorate --pretty=oneline --abbrev-commit
+	unstage = reset --
+[push]
+	default = matching
+[diff "zip"]
+	textconv = unzip -c -a
+
