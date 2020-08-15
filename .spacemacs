@@ -31,7 +31,9 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
+     python
      javascript
+     react
      markdown
      php
      html
@@ -47,14 +49,14 @@ values."
      emacs-lisp
      ;; git
      ;; markdown
-     ;; org
+     org
      ;; (shell :variables
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
      ;; spell-checking
      ;; syntax-checking
      ;; version-control
-     org-configs
+     ;org-configs
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -359,6 +361,9 @@ you should place your code here."
 
     (setq org-html-checkbox-type 'html) ;; Support actual checkbox in html file exports
 
+    ;; Do not create lockfiles
+    (setq create-lockfiles nil)
+
     ;; Set up org capture template for blog posts.
     (with-eval-after-load 'org-capture
 
@@ -391,6 +396,19 @@ you should place your code here."
                      ;; symlink pointing to the actual location of all-posts.org!
                      (file capture-report-data-file)
                      (function org-hugo-new-post-capture-template)))
+
+      ;; When exiting insert state, I always want to go back to lisp state. Edit - nothing seems to work
+      ;; https://emacs.stackexchange.com/questions/58741/how-to-enable-paredit-mode-on-all-clojure-clojurescript-and-elisp-buffers-autom
+      ;;(add-hook 'evil-insert-state-exit-hook 'lisp-state-toggle-lisp-state)
+      ;;(add-hook 'evil-insert-state-exit-hook (global-set-key "<escape>" 'lisp-state-toggle-lisp-state))
+      ;;(autoload 'enable-paredit-mode "paredit" "Turn on pseudo-structural editing of Lisp code." t)
+      ;;(eval-after-load ‘clojure-mode
+      ;;  '((add-hook 'clojure-mode-hook #'enable-paredit-mode)
+      ;;    (add-hook 'clojurescript-mode-hook #'enable-paredit)))
+
+      ;; https://stackoverflow.com/questions/25542097/emacs-evil-mode-how-to-change-insert-state-to-emacs-state-automatically
+      ;;(defalias 'evil-normal-state 'evil-lisp-state)
+      ;;(defalias 'evil-insert-state 'evil-emacs-state)
       )
     )
 
@@ -403,7 +421,7 @@ you should place your code here."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (git-commit with-editor transient magit helm-company helm-c-yasnippet fuzzy company-web web-completion-data company-tern dash-functional tern company-statistics clojure-snippets auto-yasnippet ac-ispell auto-complete company web-beautify livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor js2-mode js-doc coffee-mode mmm-mode markdown-toc markdown-mode gh-md ox-hugo phpunit phpcbf php-extras php-auto-yasnippets drupal-mode php-mode web-mode tagedit slim-mode scss-mode sass-mode pug-mode helm-css-scss haml-mode emmet-mode clj-refactor inflections multiple-cursors paredit yasnippet cider-eval-sexp-fu cider ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra lv hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile projectile pkg-info epl helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async)))
+    (yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode helm-pydoc cython-mode company-anaconda anaconda-mode pythonic org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download htmlize gnuplot git-commit with-editor transient magit helm-company helm-c-yasnippet fuzzy company-web company-tern web-completion-data dash-functional tern company-statistics clojure-snippets auto-yasnippet ac-ispell auto-complete company web-beautify livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor js2-mode js-doc coffee-mode mmm-mode markdown-toc markdown-mode gh-md ox-hugo phpunit phpcbf php-extras php-auto-yasnippets drupal-mode php-mode web-mode tagedit slim-mode scss-mode sass-mode pug-mode helm-css-scss haml-mode emmet-mode clj-refactor inflections multiple-cursors paredit yasnippet cider-eval-sexp-fu cider ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra lv hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile projectile pkg-info epl helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async)))
  '(safe-local-variable-values (quote ((cider-shadow-cljs-default-options . "app")))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
