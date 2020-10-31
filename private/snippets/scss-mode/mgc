@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: map_get($colors, [])
+# key: mgc
+# --
+map_get($colors, ${1:blue-wcag-327});

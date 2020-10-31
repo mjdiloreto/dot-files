@@ -24,3 +24,10 @@ To get YouCompleteMe to work:
     ```bash
     npm install -g typescript
     ```
+
+Installing spacemacs (for Mac):
+1. install emacs-plus@27. `brew install emacs-plus@27`
+2. install spacemacs develop branch. `git clone https://github.com/syl20bnr/spacemacs ~/.emacs. && pushd ~/.emacs.d && git checkout develop && popd`
+3. cp .spacemacs.work ~/.spacemacs
+4. launch spacemacs
+

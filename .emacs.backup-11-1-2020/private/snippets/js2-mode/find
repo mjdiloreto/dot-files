@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: find
+# key: find
+# --
+$1.find(({ ${2:_id} }) => $2 === $3)
